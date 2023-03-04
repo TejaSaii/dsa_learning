@@ -32,8 +32,14 @@ public class LinkedList {
 
 	public void prepend(int value) {
 		Node newNode = new Node(value);
-		newNode.next=head;
-		head = newNode;
+		if(length == 0) {
+			head = newNode;
+			tail = newNode;
+		}
+		else {
+			newNode.next=head;
+			head = newNode;
+		}
 		length++;
 	}
 
@@ -73,6 +79,67 @@ public class LinkedList {
 			tail = null;
 		}
 		//returning the removed element
+		return temp;
+	}
+	
+	public Node removeFirst() {
+		if(length == 0) return null;
+		Node temp = head;
+		head = head.next;
+		temp.next = null;
+		length--;
+		if(length == 0) tail = null;
+		return temp;
+	}
+	
+	public Node get(int n) {
+		Node temp = head;
+		if(n<0 || n >= length || length == 0) return null;
+		for(int i=0; i<n; i++) {
+			temp = temp.next;
+		}
+		return temp;
+	}
+	
+	public boolean insert(int index, int value) {
+		if(index < 0 || index > length) return false;
+		if(index == 0) {
+			prepend(value);
+			return true;
+		}
+		if(index == length) {
+			append(value);
+			length++;
+			return true;
+		}
+		Node temp = get(index-1);
+		Node theNode = new Node(value);
+		theNode.next = temp.next;
+		temp.next = theNode;
+		length++;
+		return true;
+	}
+	
+	public boolean set(int index, int value) {
+		Node temp = get(index);
+		if(temp != null) {
+			temp.value = value;
+			return true;
+		}
+		return false;
+	}
+	
+	public Node remove(int index) {
+		if(index < 0 || index >= length) return null;
+		if(index == 0) {
+			length--;
+			return removeFirst();
+		}
+		Node pre = get(index-1);
+		Node temp = pre.next;
+		pre.next = temp.next;
+		temp.next = null;
+		length--;
 		return temp;
 	}
 
