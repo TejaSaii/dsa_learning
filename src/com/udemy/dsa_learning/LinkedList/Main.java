@@ -55,7 +55,19 @@ public class Main {
 		
 		System.out.println(list2.remove(4).value);
 		System.out.println(list2.remove(0).value);
+		System.out.println();
 		list2.printList();
 		list2.getLength();
+		System.out.println();
+
+		LinkedList list3 = new LinkedList(1);
+		list3.append(2);
+		list3.append(3);
+		list3.append(4);
+
+		list3.printList();
+		list3.reverse();
+		System.out.println();
+		list3.printList();
 	}
 }
