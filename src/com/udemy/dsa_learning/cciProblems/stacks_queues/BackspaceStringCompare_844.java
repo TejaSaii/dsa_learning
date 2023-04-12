@@ -17,7 +17,8 @@ public class BackspaceStringCompare_844 {
         for(Character c : input.toCharArray()){
             s.push(c);
             if(c == '#'){
-                s.pop();
+                if(s.size() > 1)
+                    s.pop();
                 s.pop();
             }
         }
