@@ -61,7 +61,7 @@ var maxDepth = function (root) {
     let queue = [[root, 1]];
     let res = 0;
     while (queue.length) {
-        for (let node of queue) {
+        for (let i = 0; i < queue.length; i++) {
             let [node, depth] = queue.shift();
             if (node) {
                 res = Math.max(res, depth);
