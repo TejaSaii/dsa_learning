@@ -43,3 +43,32 @@ var maxDepth = function(root) {
     if(!root) return 0;
     return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+//solved using breath-first-search
+var maxDepth = function (root) {
+    let queue = [[root, 1]];
+    let res = 0;
+    while (queue.length) {
+        for (let node of queue) {
+            let [node, depth] = queue.shift();
+            if (node) {
+                res = Math.max(res, depth);
+                if (node.left) queue.push([node.left, depth + 1]);
+                if (node.right) queue.push([node.right, depth + 1]);
+            }
+        }
+    }
+    return res;
+};
