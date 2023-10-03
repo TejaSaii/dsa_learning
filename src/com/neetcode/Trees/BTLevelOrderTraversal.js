@@ -27,3 +27,18 @@ var levelOrder = function (root) {
     }
     return res;
 };
+
+
+//using recursive dfs
+var levelOrder = function(root, level = 0, res = []) {
+    if(!root) return [];
+    if(level === res.length){
+        res.push([]);
+    }
+
+    res[level].push(root.val);
+    levelOrder(root.left, level + 1, res);
+    levelOrder(root.right, level + 1, res);
+
+    return res;
+};
