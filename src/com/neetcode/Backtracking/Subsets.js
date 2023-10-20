@@ -20,3 +20,5 @@ const subsets = (nums) => {
     return res;
 }
 
+console.log(subsets([4, 5]));
+
